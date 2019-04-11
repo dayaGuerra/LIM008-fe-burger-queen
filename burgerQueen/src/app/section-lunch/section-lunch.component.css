@@ -1,0 +1,17 @@
+.size{
+    max-width: 10em;
+    max-height: 10em;
+}
+
+.color{
+    color: brown;
+}
+
+.margin-top{
+    margin-top: 10px;
+}
+
+.card{
+    margin-left: 3px;
+    margin-top: 3px;
+}
