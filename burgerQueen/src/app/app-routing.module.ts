@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { SectionPantComponent } from './section-pant/section-pant.component';
 import { HomeComponent } from './home/home.component';
 import { SectionLunchComponent } from './section-lunch/section-lunch.component';
-import { SectionBreakfastComponent } from './section-breakfast/section-breakfast.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -14,7 +13,6 @@ const routes: Routes = [
   path:'menu',
   component: SectionPantComponent,
   children: [
-    { path:'desayuno', component: SectionBreakfastComponent},
     { path: 'almuerzo', component: SectionLunchComponent}
   ]
 },
