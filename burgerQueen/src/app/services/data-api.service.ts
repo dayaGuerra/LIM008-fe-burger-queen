@@ -29,5 +29,8 @@ productDoc;
   return this.firestore.collection('menu').valueChanges();
   }
 
+  agregarDataFirestore(data: any){
+    this.firestore.collection('ventas').add(data);
+  }
 }
 

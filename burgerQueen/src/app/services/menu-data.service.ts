@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 // Creacion del servicio con Behavior de rxjs 
 import { BehaviorSubject } from 'rxjs';
+import { DataApiService } from './data-api.service';
 
 
 // Creo el servicio para exportar el orden de la creación de la data
@@ -29,14 +30,18 @@ export interface Productos {
 })
 
 export class MenuDataService {
+  // observable que envia data a desayuno
 public menuDesayuno = new BehaviorSubject([]);
 desayunos = this.menuDesayuno.asObservable();
-// nuevo observable.
 
+// nuevo observable envia la data total
 public totalData = new BehaviorSubject(0);
 totalPedidos = this.totalData.asObservable();
 
+
+
 arrOrden: Productos[] = [];
+arrCalculate: number;
 
 // inicializar data del pedido
 public objMenuCliente: SectionOrder = {
@@ -48,7 +53,7 @@ public objMenuCliente: SectionOrder = {
 };
 
   // para trabajar todo el cambio de data a travez de un Obsrvable
-  constructor() { }
+  constructor(public DataApiService: DataApiService) { }
   // Crear un metodo que capture el valor y lo guarde.
   menuDesayunoData(value){
     // sacar una copia de valu12 aqui, para empezar a mandar la data IMPORTANTE.
@@ -78,12 +83,12 @@ public objMenuCliente: SectionOrder = {
 }
 
 totalDePedidos(){
-       const arrCalculate = this.arrOrden.reduce((acum, obj) => {
+  this.arrCalculate = this.arrOrden.reduce((acum, obj) => {
    
        return acum + obj.subTotal;
    
      }, 0);
-     this.totalData.next(arrCalculate);
+     this.totalData.next(this.arrCalculate);
  }
 
  eliminarProducto(id){
@@ -91,7 +96,20 @@ totalDePedidos(){
      return objArrOrden.id !== id;
      });
      this.menuDesayuno.next(this.arrOrden);
-
-     console.log(this.arrOrden)
+     this.totalDePedidos()
  }
+
+ objetoAenviar(nmbreCliente, numeroMesa, fechaCliente){
+
+  const dataAEnviar = this.objMenuCliente = {
+    ...this.objMenuCliente,
+    cliente: nmbreCliente,
+    mesa: numeroMesa,
+    fecha:fechaCliente,
+    productos:this.arrOrden,
+    totalSectionOrder: this.arrCalculate
+  }
+  this.DataApiService.agregarDataFirestore(dataAEnviar);
+ }
+ 
 }

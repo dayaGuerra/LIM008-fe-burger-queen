@@ -3,13 +3,13 @@
 </div>
 
   <div class="form-group margin-top">
-    <p >Fecha : {{date | date: 'short'}}</p>
+    <p #date >Fecha : {{ fecha | date: 'short'}}</p>
     <label for="formGroupExampleInput">Cliente</label>
-    <input [ngModel]="cliente" name="cliente" #nombreCliente type="text" class="form-control" id="cliente" placeholder="Nombre del cliente">
+    <input  #cliente type="text" class="form-control" id="cliente" placeholder="Nombre del cliente">
   </div>
   <div class="form-group">
     <label for="formGroupExampleInput2">Mesa</label>
-    <input [ngModel]="mesa" name="mesa" #numeroMesa type="number" min="0" max="15" class="form-control" id="mesa" placeholder="Numero de mesa">
+    <input  #mesa  type="number" min="0" max="15" class="form-control" id="mesa" placeholder="Numero de mesa">
   </div>
 
 <table class="table table-hover table-dark table-responsive">
@@ -45,5 +45,5 @@
         <span class="input-group-text">.00</span>
       </div>
     </tfoot>
-    <button type="button" class="margin-table btn btn-success btn-lg btn-block ">Enviar orden a cocina</button>
+    <button type="button" class="margin-table btn btn-success btn-lg btn-block " (click)="enviarData(cliente.value, mesa.value, fecha)">Enviar orden a cocina</button>
 </table>

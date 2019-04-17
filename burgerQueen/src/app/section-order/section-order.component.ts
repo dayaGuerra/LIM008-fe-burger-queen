@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuDataService } from '../services/menu-data.service';
-import { Timestamp } from 'rxjs';
+
 
 @Component({
   selector: 'app-section-order',
@@ -8,12 +8,13 @@ import { Timestamp } from 'rxjs';
   styleUrls: ['./section-order.component.css']
 })
 export class SectionOrderComponent implements OnInit {
-  date: any
- // fecha : Timestamp <1>;
+ 
+  fecha : any;
+  date: any;
   pedidoDelDia = [];
   totalProducto: number;
   cliente: string;
-  mesa:string;
+  mesa:any;
 
 
   constructor(public menuDataService: MenuDataService) {  
@@ -22,7 +23,7 @@ export class SectionOrderComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.date = new Date();
+   this.fecha = new Date();
   }
 
   cantPedido(event, valores:number){
@@ -46,12 +47,12 @@ export class SectionOrderComponent implements OnInit {
     this.menuDataService.eliminarProducto(id);//lafuncion(ingresa el id)
   }
 
-  objetoAenviar(){
-    const obj = {
-      cliente: this.cliente,
-      mesa: this.mesa,
+  enviarData(cliente, mesa: any, date){
+ 
      // fecha: this.date,
-    }
+    
+
+    this.menuDataService.objetoAenviar(cliente, mesa, date);
   }
 
 }
