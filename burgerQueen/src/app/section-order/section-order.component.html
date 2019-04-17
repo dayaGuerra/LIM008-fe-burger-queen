@@ -1,17 +1,16 @@
 <div class="navbar justify-content-center bg-dark color">
  <h4>Mis Pedidos</h4>
 </div>
-<form>
+
   <div class="form-group margin-top">
-    <p>Fecha : {{fecha | date: 'short'}}</p>
+    <p >Fecha : {{date | date: 'short'}}</p>
     <label for="formGroupExampleInput">Cliente</label>
-    <input type="text" class="form-control" id="cliente" placeholder="Nombre del cliente">
+    <input [ngModel]="cliente" name="cliente" #nombreCliente type="text" class="form-control" id="cliente" placeholder="Nombre del cliente">
   </div>
   <div class="form-group">
     <label for="formGroupExampleInput2">Mesa</label>
-    <input type="number" class="form-control" id="mesa" placeholder="Numero de mesa">
+    <input [ngModel]="mesa" name="mesa" #numeroMesa type="number" min="0" max="15" class="form-control" id="mesa" placeholder="Numero de mesa">
   </div>
-</form>
 
 <table class="table table-hover table-dark table-responsive">
   <thead>
@@ -26,22 +25,22 @@
   </thead>
   <tbody>
     
-    <tr *ngFor="let lista of pedidoDelDia"  ng-init="$parent.total =total+lista.precio">
+    <tr *ngFor="let lista of pedidoDelDia">
       <th scope="row">1</th>
       <td>{{lista.nombre}} </td>
       <td>${{lista.precio}}</td>
-      <td>  <input type="number" class="form-control" min="0" id="cantidad" placeholder="0"></td>
-      <td>{{lista.precio}}</td>
-      <td>x</td>
+      <td><input type="number" class="form-control" [ngModel]="lista.cantidad" min="1" max="5" #nuevaCantidad (click)="cantPedido(lista,nuevaCantidad.value)"></td>
+      <td>{{lista.subTotal}}</td>
+      <td><button (click)="eliminar(lista.id)">x</button></td>
     </tr>
-  
+       
   </tbody>
   <tfoot class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">$</span>
       </div>
       
-      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+      <h1 type="text" class="form-control" aria-label="Amount (to the nearest dollar)" >{{ totalProducto | currency }}</h1>
       <div class="input-group-append">
         <span class="input-group-text">.00</span>
       </div>

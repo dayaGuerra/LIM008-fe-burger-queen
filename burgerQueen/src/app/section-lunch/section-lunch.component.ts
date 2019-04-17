@@ -11,7 +11,7 @@ export class SectionLunchComponent implements OnInit {
    valordedatomenu = {};
 
   constructor( public DataApiService: DataApiService,
-     public MenuDataService: MenuDataService) {
+      public MenuDataService: MenuDataService) {
       this.MenuDataService.desayunos.subscribe( menuDelDia => {
       this.valordedatomenu = menuDelDia;
    })
@@ -37,8 +37,16 @@ export class SectionLunchComponent implements OnInit {
   }
 
   // Funcion de envio de obj a servicio
-  menuDesayunoData(valor:string){
-    const valorDeMenu = valor;
+  // la cantidad del servicio va a inicializar en 1;
+  //  para que cuando le haga click en una propiedad ya este inicializado en 1.
+  menuDesayunoData(valor: any){
+    
+    const valorDeMenu = {
+      ...valor,
+      cantidad: 1,
+      subTotal: valor.precio,
+    };
+
     this.MenuDataService.menuDesayunoData(valorDeMenu);
   }
 
