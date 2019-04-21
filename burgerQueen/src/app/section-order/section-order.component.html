@@ -4,6 +4,7 @@
 
   <div class="form-group margin-top">
     <p #date >Fecha : {{ fecha | date: 'short'}}</p>
+    <p># Orden: {{numeroDePedidos}}</p>
     <label for="formGroupExampleInput">Cliente</label>
     <input  #cliente type="text" class="form-control" id="cliente" placeholder="Nombre del cliente">
   </div>
@@ -12,38 +13,35 @@
     <input  #mesa  type="number" min="0" max="15" class="form-control" id="mesa" placeholder="Numero de mesa">
   </div>
 
-<table class="table table-hover table-dark table-responsive">
+<table class="table table-hover table-responsive">
   <thead>
-    <tr>
+    <tr class="bg-dark text-white">
       <th scope="col">#</th>
-      <th scope="col">Pedido</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Subtotal</th>
-      <th scope="col">Eliminar</th>
+      <th scope="col">orden</th>
+      <th scope="col">p.unt.</th>
+      <th scope="col">cant</th>
+      <th scope="col">sub</th>
+      <th scope="col">x</th>
     </tr>
   </thead>
   <tbody>
     
-    <tr *ngFor="let lista of pedidoDelDia">
-      <th scope="row">1</th>
-      <td>{{lista.nombre}} </td>
+    <tr *ngFor="let lista of pedidoDelDia; let indice = index">
+      <th scope="row">{{indice+1}}</th>
+      <td><p class="">{{lista.nombre}}</p></td>
       <td>${{lista.precio}}</td>
-      <td><input type="number" class="form-control" [ngModel]="lista.cantidad" min="1" max="5" #nuevaCantidad (click)="cantPedido(lista,nuevaCantidad.value)"></td>
+      <td><input type="number" style="max-width:50px" [ngModel]="lista.cantidad" min="1" max="5" #nuevaCantidad (click)="cantPedido(lista,nuevaCantidad.value)"></td>
       <td>{{lista.subTotal}}</td>
       <td><button (click)="eliminar(lista.id)">x</button></td>
     </tr>
        
   </tbody>
-  <tfoot class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">$</span>
-      </div>
-      
-      <h1 type="text" class="form-control" aria-label="Amount (to the nearest dollar)" >{{ totalProducto | currency }}</h1>
-      <div class="input-group-append">
-        <span class="input-group-text">.00</span>
-      </div>
-    </tfoot>
-    <button type="button" class="margin-table btn btn-success btn-lg btn-block " (click)="enviarData(cliente.value, mesa.value, fecha)">Enviar orden a cocina</button>
+
+     
 </table>
+
+  
+  <h1 type="text" class="font-weight-bold form-control text-right" aria-label="Amount (to the nearest dollar)" >{{ totalProducto | currency }}</h1>
+  
+
+<button type="button" class="margin-table btn btn-success btn-lg btn-block " (click)="enviarData(cliente.value, mesa.value, fecha)">Enviar orden a cocina</button>

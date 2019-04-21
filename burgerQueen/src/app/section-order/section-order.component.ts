@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuDataService } from '../services/menu-data.service';
+import { DataApiService } from '../services/data-api.service'
 
 
 @Component({
@@ -12,14 +13,18 @@ export class SectionOrderComponent implements OnInit {
   fecha : any;
   date: any;
   pedidoDelDia = [];
+  dataPedidos = [];
+  numeroDePedidos: number;
   totalProducto: number;
   cliente: string;
-  mesa:any;
+  mesa:number;
+  numeroDeOrden:string;
 
 
-  constructor(public menuDataService: MenuDataService) {  
+  constructor(public menuDataService: MenuDataService, public dataApiService: DataApiService) {  
     this.funcionDePedidosConCopia();
     this.getTotal()
+    this.registrarNumeroDeOrden()
   }
 
   ngOnInit() {
@@ -47,12 +52,28 @@ export class SectionOrderComponent implements OnInit {
     this.menuDataService.eliminarProducto(id);//lafuncion(ingresa el id)
   }
 
-  enviarData(cliente, mesa: any, date){
+  enviarData(cliente, mesa: number, date){
  
-     // fecha: this.date,
+    const pedido = this.numeroDePedidos
+     if((cliente !== '') || (mesa !== 0) || (date !== '')){
+      this.menuDataService.objetoAenviar(cliente, mesa, date, pedido);
+      this.cliente = '';
+      this.mesa = 0;
+      this.date = '';
+     }else{
+       alert('No se pueden enviar datos vacios')
+     }
+
     
 
-    this.menuDataService.objetoAenviar(cliente, mesa, date);
+  }
+
+  registrarNumeroDeOrden(){
+   this.dataApiService.getDataNumeroDePedidos().subscribe( dataPedidos => {
+    this.numeroDePedidos = dataPedidos.length+1;
+    console.log(this.numeroDePedidos)
+    
+})
   }
 
 }

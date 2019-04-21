@@ -4,6 +4,30 @@
       </div>
 
 
-    <button *ngFor="let menu of data" (click) = "menuDesayunoData(menu)" >  {{ menu.nombre }} </button>
 
-  
+
+      <div class="container">
+        
+              
+        <hr class="mt-2 mb-5">
+      
+        <div class="row text-center text-lg-left">
+      
+          <div *ngFor="let menu of data" class="col-lg-3 col-md-4 col-6" (click) = "menuDesayunoData(menu)">
+              <p class="card-text">{{menu.subtipo}}</p>
+            <div class="card bg-dark text-white">
+
+              <img src="{{menu.img}}" class="card-img" alt="imagen de menú">
+              <div class="card-img-overlay opacity">
+                <p class="font-weight-bold text-uppercase text-center lead">{{menu.nombre}}</p>
+              </div>
+          </div>
+          
+      </div>
+
+   <!-- <button *ngFor="let menu of data" (click) = "menuDesayunoData(menu)" >  {{ menu.nombre }} </button>-->
+    <!--<div *ngFor="let menu of data" class="card text-white mb-3" style="max-width: 11rem;" (click) = "menuDesayunoData(menu)">
+
+    
+      </div>
+    </div>-->

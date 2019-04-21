@@ -32,5 +32,9 @@ productDoc;
   agregarDataFirestore(data: any){
     this.firestore.collection('ventas').add(data);
   }
+
+  getDataNumeroDePedidos(){
+   return this.firestore.collection('ventas').valueChanges();
+  }
 }
 

@@ -13,6 +13,8 @@ export interface SectionOrder {
   fecha: any,
   productos : Productos[],
   totalSectionOrder: number,
+  orden: number
+
 };
 
 
@@ -42,6 +44,7 @@ totalPedidos = this.totalData.asObservable();
 
 arrOrden: Productos[] = [];
 arrCalculate: number;
+numeroDeOrdenAatender: number;
 
 // inicializar data del pedido
 public objMenuCliente: SectionOrder = {
@@ -50,6 +53,7 @@ public objMenuCliente: SectionOrder = {
   fecha: 0,
   productos : [],
   totalSectionOrder: 0,
+  orden:0
 };
 
   // para trabajar todo el cambio de data a travez de un Obsrvable
@@ -99,7 +103,9 @@ totalDePedidos(){
      this.totalDePedidos()
  }
 
- objetoAenviar(nmbreCliente, numeroMesa, fechaCliente){
+ 
+
+ objetoAenviar(nmbreCliente, numeroMesa, fechaCliente, numeroPedido){
 
   const dataAEnviar = this.objMenuCliente = {
     ...this.objMenuCliente,
@@ -107,9 +113,11 @@ totalDePedidos(){
     mesa: numeroMesa,
     fecha:fechaCliente,
     productos:this.arrOrden,
-    totalSectionOrder: this.arrCalculate
+    totalSectionOrder: this.arrCalculate,
+    orden: numeroPedido
   }
+console.log(dataAEnviar);
   this.DataApiService.agregarDataFirestore(dataAEnviar);
  }
- 
+
 }

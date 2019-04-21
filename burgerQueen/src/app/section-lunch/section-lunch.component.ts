@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataApiService } from '../services/data-api.service';
 import { MenuDataService } from '../services/menu-data.service';
+
 @Component({
   selector: 'app-section-lunch',
   templateUrl: './section-lunch.component.html',

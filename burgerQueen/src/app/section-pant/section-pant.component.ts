@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-section-pant',
   template: `
-  <div class="d-flex justify-content-around space">
+  <div class="d-flex margin-top justify-content-around space">
   <div class="width">
   <app-section-lunch></app-section-lunch>
   </div>
-  <div class="width">
+  <div class="width-order">
   <app-section-order></app-section-order>
   </div>
   </div>
