@@ -19,7 +19,24 @@ describe('HomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create home', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render title in a h1 tag', () => {
+    const compiled = fixture.debugElement.nativeElement;
+     expect(compiled.querySelector('h1').textContent).toContain('Burger Queen');
+  }); 
+
+  it('should render title in a p tag', () => {
+    const compiled = fixture.debugElement.nativeElement;
+     expect(compiled.querySelector('p').textContent).toContain('"La verdadera hamburguesa"');
+  }); 
+
+  it('should render title in a tag', () => {
+    const compiled = fixture.debugElement.nativeElement;
+     expect(compiled.querySelector('a').textContent).toContain('Iniciar ventas');
+  }); 
+
+
 });

@@ -1,19 +1,38 @@
-<div class="navbar justify-content-center bg-dark color">
+<section class="background-order">
+<div class="navbar justify-content-center bg-dark color background-order">
  <h4>Mis Pedidos</h4>
 </div>
 
   <div class="form-group margin-top">
-    <p #date >Fecha : {{ fecha | date: 'short'}}</p>
-    <p># Orden: {{numeroDePedidos}}</p>
-    <label for="formGroupExampleInput">Cliente</label>
-    <input  #cliente type="text" class="form-control" id="cliente" placeholder="Nombre del cliente">
-  </div>
-  <div class="form-group">
-    <label for="formGroupExampleInput2">Mesa</label>
-    <input  #mesa  type="number" min="0" max="15" class="form-control" id="mesa" placeholder="Numero de mesa">
+
+    <div class="text-center p-1 mb-2 font-weight-bold margin-bottom bg-warning" id="inputGroup-sizing-sm" >FECHA : {{ fecha | date: 'short'}}</div>
+    <div class="text-center p-1 mb-2 font-weight-bold margin-bottom bg-warning" id="inputGroup-sizing-sm" >N° DE ATENCIÓN: 00{{numeroDePedidos}}</div>
+   
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="bg-dark color input-group-text" id="inputGroup-sizing-sm">RESPONSABLE DE MESA</span>
+      </div>
+      <input [(ngModel)]="mesero" name="mesero" required type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="bg-dark color input-group-text" id="inputGroup-sizing-sm">CLIENTE</span>
+        </div>
+        <input [(ngModel)]="cliente" name="cliente" required type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    </div>
+
+    <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="bg-dark color input-group-text" id="inputGroup-sizing-sm">N° MESA</span>
+        </div>
+        <input [(ngModel)]="mesa" name="mesa" required type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+    </div>
+
   </div>
 
-<table class="table table-hover table-responsive">
+
+<table class="table table-hover">
   <thead>
     <tr class="bg-dark text-white">
       <th scope="col">#</th>
@@ -44,4 +63,5 @@
   <h1 type="text" class="font-weight-bold form-control text-right" aria-label="Amount (to the nearest dollar)" >{{ totalProducto | currency }}</h1>
   
 
-<button type="button" class="margin-table btn btn-success btn-lg btn-block " (click)="enviarData(cliente.value, mesa.value, fecha)">Enviar orden a cocina</button>
+<button type="button" class="margin-table btn btn-warning btn-lg btn-block font-weight-bold " (click)="enviarData()">ENVIAR PEDIDO</button>
+</section>

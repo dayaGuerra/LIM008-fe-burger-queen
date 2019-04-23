@@ -17,6 +17,7 @@ export class SectionOrderComponent implements OnInit {
   numeroDePedidos: number;
   totalProducto: number;
   cliente: string;
+  mesero:string;
   mesa:number;
   numeroDeOrden:string;
 
@@ -30,6 +31,12 @@ export class SectionOrderComponent implements OnInit {
   ngOnInit() {
    this.fecha = new Date();
   }
+
+  registrarNumeroDeOrden(){
+    this.dataApiService.getDataNumeroDePedidos().subscribe( dataPedidos => {
+     this.numeroDePedidos = dataPedidos.length + 1;
+     })
+   }
 
   cantPedido(event, valores:number){
     this.menuDataService.acumuladorDePedidos(event,valores);
@@ -52,28 +59,36 @@ export class SectionOrderComponent implements OnInit {
     this.menuDataService.eliminarProducto(id);//lafuncion(ingresa el id)
   }
 
-  enviarData(cliente, mesa: number, date){
- 
-    const pedido = this.numeroDePedidos
-     if((cliente !== '') || (mesa !== 0) || (date !== '')){
+  enviarData(){
+
+   if((this.cliente === '') || (this.mesa === 0) || (this.date === '') || (this.mesero === '')){
+    
+    console.log('puta data');
+   
+    }else if((this.cliente !== '') || (this.mesa !== 0) || (this.date !== '') || (this.mesero !== '')){
+
+      const obj = 
+    {
+      mesero:this.mesero,
+      cliente: this.cliente,
+      mesa: this.mesa,
+      fecha: this.fecha,
+      orden: this.numeroDePedidos
+    }
+    this.menuDataService.objetoAenviar(obj); 
+    }
+
+}
+
+  
+
+}
+
+/*if((cliente !== '') || (mesa !== 0) || (date !== '')){
       this.menuDataService.objetoAenviar(cliente, mesa, date, pedido);
       this.cliente = '';
       this.mesa = 0;
       this.date = '';
      }else{
        alert('No se pueden enviar datos vacios')
-     }
-
-    
-
-  }
-
-  registrarNumeroDeOrden(){
-   this.dataApiService.getDataNumeroDePedidos().subscribe( dataPedidos => {
-    this.numeroDePedidos = dataPedidos.length+1;
-    console.log(this.numeroDePedidos)
-    
-})
-  }
-
-}
+     } */

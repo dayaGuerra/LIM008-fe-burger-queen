@@ -18,6 +18,9 @@ import { environment } from '../environments/environment';
 // servicios
 import { DataApiService } from './services/data-api.service'
 
+// modulos components
+//import { LunchModule } from './section-lunch/lunch/lunch.module'
+
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { DataApiService } from './services/data-api.service'
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    FormsModule
+    FormsModule,
+   // LunchModule
   ],
   providers: [
     DataApiService

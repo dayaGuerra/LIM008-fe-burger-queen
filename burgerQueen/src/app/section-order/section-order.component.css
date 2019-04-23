@@ -1,8 +1,18 @@
 .margin-top{
-    margin-top: 61px;
+    margin-top: 15px;
+}
+.margin-bottom{
+    margin-bottom: 10px;
+}
+
+.height{
+    height: 20px;
 }
 
 .color{
     color: #f1f1f1;
 }
 
+.background-order{
+    background-color: rgba(88, 84, 84, 0.178);
+}

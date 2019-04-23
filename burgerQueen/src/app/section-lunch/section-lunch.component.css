@@ -19,3 +19,8 @@
 .opacity{
     background: rgba(0, 0, 0, 0.842);
 }
+
+.cursor{
+    cursor: pointer;
+}
+

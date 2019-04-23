@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { DataApiService } from './data-api.service';
 
 
+
 // Creo el servicio para exportar el orden de la creación de la data
 // Aqui se crea el modelo de objeto en el que se va a almacenar la información
 
@@ -40,12 +41,16 @@ desayunos = this.menuDesayuno.asObservable();
 public totalData = new BehaviorSubject(0);
 totalPedidos = this.totalData.asObservable();
 
+// quiero recojer la data con esta función
+public dataEnviada = new BehaviorSubject({});
+dataParaEnviar = this.dataEnviada.asObservable();
+
 
 
 arrOrden: Productos[] = [];
 arrCalculate: number;
 numeroDeOrdenAatender: number;
-
+dataAEnviar: object;
 // inicializar data del pedido
 public objMenuCliente: SectionOrder = {
   cliente: '',
@@ -105,19 +110,16 @@ totalDePedidos(){
 
  
 
- objetoAenviar(nmbreCliente, numeroMesa, fechaCliente, numeroPedido){
+ objetoAenviar(objt){
 
-  const dataAEnviar = this.objMenuCliente = {
-    ...this.objMenuCliente,
-    cliente: nmbreCliente,
-    mesa: numeroMesa,
-    fecha:fechaCliente,
+  this.dataAEnviar = objt = {
+    ...objt,
     productos:this.arrOrden,
     totalSectionOrder: this.arrCalculate,
-    orden: numeroPedido
-  }
-console.log(dataAEnviar);
-  this.DataApiService.agregarDataFirestore(dataAEnviar);
- }
+  };
 
+this.DataApiService.agregarDataFirestore(this.dataAEnviar);
+
+}
+ 
 }

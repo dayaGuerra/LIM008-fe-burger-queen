@@ -13,3 +13,26 @@
 .margin-top{
     margin-top: 10px;
 }
+.margin{
+    padding: 15px 0px 15px 20px;
+}
+.nav{
+   /* height: 100vh;*/
+    width: 100%;
+    background-image: url('https://i.ibb.co/TqXvvMV/hamburger-4103070-1920-1.jpg');
+    color: #ffffff
+    /* background-size: cover;*/
+}
+/*
+.masthead {
+   
+    min-height: 500px;
+    background-image: url('https://i.ibb.co/TqXvvMV/hamburger-4103070-1920-1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  */
+  .font-burger{
+    font-family: 'Satisfy', cursive;
+  }

@@ -7,7 +7,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs'
 
 // clase o modelo de data
-import { DataApi } from './data-api.model'
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +15,7 @@ export class DataApiService {
 
 // utilizo mi models para describir mejor mis datos.
 // cuando le de un valor tiene que coincidir con el tipo de valor que le estoy asignando
-productsCollection;
-products: Observable<DataApi[]>;
-productDoc;
+
 
   // enlazo con firebase todo lo que quiero obtener de su base de datos
   constructor(public firestore: AngularFirestore) { 
@@ -30,7 +27,7 @@ productDoc;
   }
 
   agregarDataFirestore(data: any){
-    this.firestore.collection('ventas').add(data);
+    return this.firestore.collection('ventas').add(data);
   }
 
   getDataNumeroDePedidos(){
