@@ -28,7 +28,7 @@ export class SectionLunchComponent implements OnInit {
           // se crea una variable de tipo string donde se va a guardar el valor
       const filterData =  data.filter((obj: any ) => {
 
-         if(obj.tipo === typeMenu){
+         if(obj.subtipo === typeMenu){
             return obj;
          }
        });

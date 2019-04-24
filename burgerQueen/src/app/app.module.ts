@@ -16,7 +16,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
 // servicios
-import { DataApiService } from './services/data-api.service'
+import { DataApiService } from './services/data-api.service';
+import { ServiceWorkerModule } from '@angular/service-worker'
 
 // modulos components
 //import { LunchModule } from './section-lunch/lunch/lunch.module'
@@ -37,6 +38,7 @@ import { DataApiService } from './services/data-api.service'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
    // LunchModule
   ],
   providers: [
